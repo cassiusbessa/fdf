@@ -31,5 +31,7 @@ int         handle_key_press(int key, t_mlx_data *mlx_data);
 int         handle_key_release(int key, t_mlx_data *mlx_data);
 int         mlx_config(void);
 int         map3d_generator(char *file_name);
+void	draw_pixel(t_mlx_data mlx, int x, int y,
+			float brightness);
 
 #endif

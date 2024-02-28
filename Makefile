@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/02/23 16:55:10 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/02/28 18:03:57 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ FDF_SRCS =	main.c\
 			window.c\
 			events.c\
 			mlx-config.c\
-			input-handler.c
+			input-handler.c\
+			xiaolin-wu-helpers.c\
+			xiaolin-wu-round.c
 
 LIBFT = utils/libft/libft.a
 
