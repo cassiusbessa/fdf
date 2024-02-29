@@ -6,13 +6,13 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 16:55:25 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/02/28 18:05:18 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:45:57 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	swap(int *a, int *b)
+static void	swap(int *a, int *b)
 {
 	int	temp;
 
@@ -21,16 +21,20 @@ void	swap(int *a, int *b)
 	*b = temp;
 }
 
-int	encode_rgb(unsigned char red, unsigned char green, unsigned char blue)
+int	calculate_steep(t_point *p0, t_point *p1)
 {
-	return (red << 16 | green << 8 | blue);
-}
+	int	steep;
 
-void	draw_pixel(t_mlx_data mlx, int x, int y,
-			float brightness)
-{
-	int	c;
-
-	c = brightness * 255;
-	mlx_pixel_put(mlx.mlx, mlx.win, x, y, encode_rgb(c, c, c));
+	steep = (absolute(p1->y - p0->y) > absolute(p1->x - p0->x));
+	if (steep)
+	{
+		swap(&((*p0).x), &((*p0).y));
+		swap(&((*p1).x), &((*p1).y));
+	}
+	if (p0->x > p1->x)
+	{
+		swap(&(*p0).x, &((*p1).x));
+		swap(&((*p0).y), &((*p1).y));
+	}
+	return (steep);
 }
