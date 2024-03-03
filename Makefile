@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/02/29 20:50:27 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/01 16:18:04 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ FDF_SRCS =	main.c\
 			xiaolin-wu-helpers.c\
 			line-helpers.c\
 			xiaolin-wu-round.c\
-			xiaolin-wu-draw.c
+			xiaolin-wu-draw.c\
+			test.c
 
 LIBFT = utils/libft/libft.a
 

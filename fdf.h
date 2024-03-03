@@ -7,6 +7,8 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include <math.h>
+
 typedef struct s_mlx
 {
     void    *mlx_ptr;
@@ -47,7 +49,7 @@ int         mlx_config(void);
 int         map3d_generator(char *file_name);
 void	    draw_pixel(t_mlx_data mlx, int x, int y,
 			float brightness);
-void set_delta_values(t_point p0, t_point p1, t_delta *d);
+void        set_delta_values(t_point p0, t_point p1, t_delta *d);
 
 
 float	absolute(float x);
@@ -57,5 +59,7 @@ float	float_part(float x);
 
 int	    calculate_steep(t_point *p0, t_point *p1);
 void	draw_line(t_point *p0, t_point *p1, t_mlx_data m);
+void    drawAALine(t_mlx_data m, int x0 , int y0 , int x1 , int y1);
+void    draw_line2(t_mlx_data m, int start_x, int start_y, int end_x, int end_y, int color);
 
 #endif

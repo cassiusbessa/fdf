@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/02/29 20:49:00 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/03 14:36:12 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	mlx_config(void)
 		&handle_key_press, &mlx_data);
 	mlx_hook(mlx_data.win, KeyRelease, KeyReleaseMask,
 		&handle_key_release, &mlx_data);
-	draw_line(&a, &b, mlx_data);
+	draw_line2(mlx_data, a.x, a.y, b.x, b.y, 4858);
 	mlx_loop(mlx_data.mlx);
 	mlx_destroy_display(mlx_data.mlx);
 	free(mlx_data.mlx);
