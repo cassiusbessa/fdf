@@ -6,13 +6,13 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:25:05 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/02/26 20:26:31 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/04 16:21:15 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	line_count(char *file_name)
+static int	height_count(char *file_name)
 {
 	int		fd;
 	int		count;
@@ -32,6 +32,16 @@ static int	line_count(char *file_name)
 	return (count);
 }
 
+static int	width_count(char **splited)
+{
+	int	i;
+
+	i = 0;
+	while (splited[i])
+		i++;
+	return (i);
+}
+
 void	destroy_matrix(void **matrix)
 {
 	int	i;
@@ -47,24 +57,27 @@ void	destroy_matrix(void **matrix)
 	free(matrix);
 }
 
-static void	fill_int_line(char *line, int *coordinates_line, int size)
+static void	fill_int_line(char *line, int **coordinates_line)
 {
 	int			i;
 	char		**temp;
+	int			width;
 	t_int_valid	n;
 
 	if (!line)
 		return ;
 	temp = ft_split(line, ' ');
+	width = width_count(temp);
 	free(line);
 	line = NULL;
+	*coordinates_line = (int *)ft_calloc(width, sizeof (int));
 	i = 0;
-	while (i < size)
+	while (i < width)
 	{
 		n = ft_atoi(temp[i]);
 		if (n.err)
-			ft_printf("você está trollando o mapa");
-		coordinates_line[i] = n.value;
+			ft_printf("você está trollando o mapa\n");
+		(*coordinates_line)[i] = n.value;
 		i++;
 	}
 	destroy_matrix((void **)temp);
@@ -74,21 +87,21 @@ int	map3d_generator(char *file_name)
 {
 	int		fd;
 	int		**coordinates;
-	int		line_size;
+	int		heigth;
 	char	*line;
 	int		i;
 
-	line_size = line_count(file_name);
-	coordinates = (int **)ft_calloc(line_size + 1, sizeof (int *));
+	heigth = height_count(file_name);
+	coordinates = (int **)ft_calloc(heigth + 1, sizeof (int *));
 	fd = open(file_name, O_RDONLY);
 	i = 0;
-	while (i < line_size)
+	while (i < heigth)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		coordinates[i] = (int *)ft_calloc(line_size + 1, sizeof (int));
-		fill_int_line(line, coordinates[i], line_size);
+		//coordinates[i] = (int *)ft_calloc(19, sizeof (int));
+		fill_int_line(line, &(coordinates[i]));
 		i++;
 	}
 	get_next_line(fd);
