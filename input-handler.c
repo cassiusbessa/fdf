@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:25:05 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/04 16:21:15 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/04 19:20:47 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	destroy_matrix(void **matrix)
 	free(matrix);
 }
 
-static void	fill_int_line(char *line, int **coordinates_line)
+static void	fill_int_line(char *line, t_map *map, int **coordinates_line)
 {
 	int			i;
 	char		**temp;
@@ -80,30 +80,28 @@ static void	fill_int_line(char *line, int **coordinates_line)
 		(*coordinates_line)[i] = n.value;
 		i++;
 	}
+	map->size.width = i;
 	destroy_matrix((void **)temp);
 }
 
-int	map3d_generator(char *file_name)
+int	map3d_generator(char *file_name, t_map *map)
 {
 	int		fd;
-	int		**coordinates;
-	int		heigth;
 	char	*line;
 	int		i;
 
-	heigth = height_count(file_name);
-	coordinates = (int **)ft_calloc(heigth + 1, sizeof (int *));
+	map->size.height = height_count(file_name);
+	map->coordinates = (int **)ft_calloc(map->size.height + 1, sizeof (int *));
 	fd = open(file_name, O_RDONLY);
 	i = 0;
-	while (i < heigth)
+	while (i < map->size.height)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		//coordinates[i] = (int *)ft_calloc(19, sizeof (int));
-		fill_int_line(line, &(coordinates[i]));
+		fill_int_line(line, map, &(map->coordinates[i]));
 		i++;
 	}
 	get_next_line(fd);
-	destroy_matrix((void **)coordinates);
+	destroy_matrix((void **)map->coordinates);
 }

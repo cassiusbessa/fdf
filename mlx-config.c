@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/03 14:36:12 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:13:50 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	mlx_config(void)
 {
 	t_mlx_data	mlx_data;
-	t_window	window;
+	t_size		window;
 	t_point		a;
 	t_point		b;
 

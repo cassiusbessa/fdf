@@ -15,11 +15,11 @@ typedef struct s_mlx
     void    *win_ptr;
 }   t_mlx;
 
-typedef struct s_window
+typedef struct s_size
 {
     int width;
     int height;
-}   t_window;
+}   t_size;
 
 typedef struct s_mlx_data
 {
@@ -33,6 +33,12 @@ typedef struct s_point
     int y;
 }   t_point;
 
+typedef struct s_map
+{
+    t_size  size;
+    int     **coordinates;
+}   t_map;
+
 typedef struct s_delta
 {
     float   dx;
@@ -41,12 +47,12 @@ typedef struct s_delta
 }   t_delta;
 
 
-t_window    get_full_screen(void *mlx_ptr);
+t_size    get_full_screen(void *mlx_ptr);
 int         handle_no_event(void *data);
 int         handle_key_press(int key, t_mlx_data *mlx_data);
 int         handle_key_release(int key, t_mlx_data *mlx_data);
 int         mlx_config(void);
-int         map3d_generator(char *file_name);
+int         map3d_generator(char *file_name, t_map *map);
 void	    draw_pixel(t_mlx_data mlx, int x, int y,
 			float brightness);
 void        set_delta_values(t_point p0, t_point p1, t_delta *d);
