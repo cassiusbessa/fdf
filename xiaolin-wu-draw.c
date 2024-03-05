@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/03 14:48:15 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:57:12 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,21 @@ void	draw_line(t_point *p0, t_point *p1, t_mlx_data m)
 		draw_without_step(m, *p0, *p1, d);
 }
 
-void    draw_line2(t_mlx_data m, int start_x, int start_y, int end_x, int end_y, int color)
+void    draw_line2(t_mlx_data m, t_point a, t_point b, int color)
 {
-    double    delta_x;
-    double    delta_y;
-    int        pixels;
+    double	delta_x;
+    double	delta_y;
+    int		pixels;
 
-    delta_x = end_x - start_x;
-    delta_y = end_y - start_y;
+	// printf("x: %f, y: %f\n", a.x, a.y);
+	// printf("x: %f, y: %f\n", b.x, b.y);
+    delta_x = b.x - a.x;
+    delta_y = b.y - a.y;
     pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
     delta_x /= pixels;
     delta_y /= pixels;
-    double pixel_x = start_x;
-    double pixel_y = start_y;
+    double pixel_x = a.x;
+    double pixel_y = a.y;
     while (pixels)
     {
         mlx_pixel_put(m.mlx, m.win, pixel_x, pixel_y, color);

@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/04 17:13:50 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:58:38 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int	mlx_config(void)
 	t_size		window;
 	t_point		a;
 	t_point		b;
-
-	a.x = 99;
-	a.y = 25;
-	b.x = 355;
-	b.y = 88;
+	t_map		*map;
 
 	mlx_data.mlx = mlx_init();
 	if (mlx_data.mlx == NULL)
@@ -37,7 +33,11 @@ int	mlx_config(void)
 		&handle_key_press, &mlx_data);
 	mlx_hook(mlx_data.win, KeyRelease, KeyReleaseMask,
 		&handle_key_release, &mlx_data);
-	draw_line2(mlx_data, a.x, a.y, b.x, b.y, 4858);
+	map = (t_map *)ft_calloc(sizeof (t_map), 1);
+	map3d_generator("42.fdf", map);
+	connect_dots(*map, mlx_data, 30);
+	destroy_matrix(map->coordinates);
+	free(map);
 	mlx_loop(mlx_data.mlx);
 	mlx_destroy_display(mlx_data.mlx);
 	free(mlx_data.mlx);

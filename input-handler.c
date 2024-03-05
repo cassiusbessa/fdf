@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:25:05 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/04 19:20:47 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:19:43 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ static void	fill_int_line(char *line, t_map *map, int **coordinates_line)
 {
 	int			i;
 	char		**temp;
-	int			width;
 	t_int_valid	n;
+	t_point		*p;
 
 	if (!line)
 		return ;
 	temp = ft_split(line, ' ');
-	width = width_count(temp);
+	map->size.width = width_count(temp);
 	free(line);
 	line = NULL;
-	*coordinates_line = (int *)ft_calloc(width, sizeof (int));
+	*coordinates_line = (int *)ft_calloc(map->size.width, sizeof (int));
 	i = 0;
-	while (i < width)
+	while (i < map->size.width)
 	{
 		n = ft_atoi(temp[i]);
 		if (n.err)
@@ -80,7 +80,6 @@ static void	fill_int_line(char *line, t_map *map, int **coordinates_line)
 		(*coordinates_line)[i] = n.value;
 		i++;
 	}
-	map->size.width = i;
 	destroy_matrix((void **)temp);
 }
 
@@ -103,5 +102,4 @@ int	map3d_generator(char *file_name, t_map *map)
 		i++;
 	}
 	get_next_line(fd);
-	destroy_matrix((void **)map->coordinates);
 }
