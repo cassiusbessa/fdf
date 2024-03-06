@@ -35,18 +35,19 @@ typedef struct s_point
 	float z;
 }   t_point;
 
+typedef struct t_mapconfig
+{
+	int	trans_x;
+	int	trans_y;
+	int	zoom;
+}	t_mapconfig;
+
 typedef struct s_map
 {
-	t_size  size;
-	int     **coordinates;
+	t_size  	size;
+	int     	**coordinates;
+	t_mapconfig	config;
 }   t_map;
-
-typedef struct s_delta
-{
-	float   dx;
-	float   dy;
-	float	gradient;
-}   t_delta;
 
 typedef void (*t_point_transform)(int angle, t_point *p);
 t_point		new_point(float x, float y, float z,
@@ -60,19 +61,9 @@ int         mlx_config(void);
 int         map3d_generator(char *file_name, t_map *map);
 void	    draw_pixel(t_mlx_data mlx, int x, int y,
 			float brightness);
-void        set_delta_values(t_point p0, t_point p1, t_delta *d);
 
-
-float	absolute(float x);
-int     int_part(float x);
-float	one_less_float_part(float x);
-float	float_part(float x);
-
-int	    calculate_steep(t_point *p0, t_point *p1);
-void	draw_line(t_point *p0, t_point *p1, t_mlx_data m);
-void    drawAALine(t_mlx_data m, int x0 , int y0 , int x1 , int y1);
 void    draw_line2(t_mlx_data m, t_point a, t_point b, int color);
-
+void    bresenham(t_mlx_data m ,t_point a, t_point b, int color);
 void    connect_dots(t_map map, t_mlx_data	mlx_data, int angle);
 void	destroy_matrix(void **matrix);
 

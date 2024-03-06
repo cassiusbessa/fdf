@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/03/04 21:28:22 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/05 18:42:58 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,10 @@ FDF_SRCS =	main.c\
 			events.c\
 			mlx-config.c\
 			input-handler.c\
-			xiaolin-wu-helpers.c\
 			line-helpers.c\
-			xiaolin-wu-round.c\
-			xiaolin-wu-draw.c\
+			line-draw.c\
 			isometric.c\
 			point.c\
-			test.c
 
 LIBFT = utils/libft/libft.a
 

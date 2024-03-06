@@ -1,75 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xiaolin-wu-draw.c                                  :+:      :+:    :+:   */
+/*   line-draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/05 15:57:12 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:41:18 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void static	draw_with_step(t_mlx_data m, t_point p0, t_point p1, t_delta d)
-{
-	int		xpxl1;
-	int		xpxl2;
-	float	intersect_y;
-
-	xpxl1 = p0.x;
-	xpxl2 = p1.x;
-	intersect_y = p0.y;
-	while (xpxl1 <= xpxl2)
-	{
-		draw_pixel(m, int_part(intersect_y), xpxl1,
-			one_less_float_part(intersect_y));
-		draw_pixel(m, int_part(intersect_y) - 1, xpxl1,
-			float_part(intersect_y));
-		intersect_y += d.gradient;
-		xpxl1++;
-	}
-}
-
-void static	draw_without_step(t_mlx_data m, t_point p0, t_point p1, t_delta d)
-{
-	int		xpxl1;
-	int		xpxl2;
-	float	intersect_y;
-
-	xpxl1 = p0.x;
-	xpxl2 = p1.x;
-	intersect_y = p0.y;
-	while (xpxl1 <= xpxl2)
-	{
-		draw_pixel(m, xpxl1, int_part(intersect_y),
-			one_less_float_part(intersect_y));
-		draw_pixel(m, xpxl1, int_part(intersect_y) - 1,
-			float_part(intersect_y));
-		intersect_y += d.gradient;
-		xpxl1++;
-	}
-}
-
-void	draw_line(t_point *p0, t_point *p1, t_mlx_data m)
-{
-	int		steep;
-	t_delta	d;
-	int		xpxl1;
-	int		xpxl2;
-	float	intersect_y;
-
-	steep = calculate_steep(p0, p1);
-	set_delta_values(*p0, *p1, &d);
-	xpxl1 = p0->x;
-	xpxl2 = p1->x;
-	intersect_y = p0->y;
-	if (steep)
-		draw_with_step(m, *p0, *p1, d);
-	else
-		draw_without_step(m, *p0, *p1, d);
-}
 
 void    draw_line2(t_mlx_data m, t_point a, t_point b, int color)
 {
@@ -92,5 +33,39 @@ void    draw_line2(t_mlx_data m, t_point a, t_point b, int color)
         pixel_x += delta_x;
         pixel_y += delta_y;
         --pixels;
+    }
+}
+
+static int max_n(float a, float b)
+{
+    if (a > b)
+        return (a);
+    return (b);
+}
+
+static float mod_n(float i)
+{
+    if (i < 0)
+        return (-i);
+    return (i);
+}
+
+void    bresenham(t_mlx_data m ,t_point a, t_point b, int color)
+{
+    float   x_step;
+    float   y_step;
+    int     max;
+    printf("a:(x: %f, y: %f)\n", a.x, a.y);
+    printf("b:(x: %f, y: %f)\n", b.x, b.y);
+    x_step = b.x - a.x;
+    y_step = b.y - a.y;
+    max = max_n(mod_n(x_step), mod_n(y_step));
+    x_step /= max;
+    y_step /= max;
+    while ((int)(a.x - b.x) || (int)(a.y - b.y))
+    {
+        mlx_pixel_put(m.mlx, m.win, a.x, a.y, color);
+        a.x += x_step;
+        a.y += y_step;
     }
 }
