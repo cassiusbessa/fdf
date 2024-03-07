@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:25:05 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/04 21:19:43 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:54:26 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	fill_int_line(char *line, t_map *map, int **coordinates_line)
 {
 	int			i;
 	char		**temp;
-	t_int_valid	n;
+	int			n;
 	t_point		*p;
 
 	if (!line)
@@ -75,15 +75,13 @@ static void	fill_int_line(char *line, t_map *map, int **coordinates_line)
 	while (i < map->size.width)
 	{
 		n = ft_atoi(temp[i]);
-		if (n.err)
-			ft_printf("você está trollando o mapa\n");
-		(*coordinates_line)[i] = n.value;
+		(*coordinates_line)[i] = n;
 		i++;
 	}
 	destroy_matrix((void **)temp);
 }
 
-int	map3d_generator(char *file_name, t_map *map)
+int	coordinate_map(char *file_name, t_map *map)
 {
 	int		fd;
 	char	*line;

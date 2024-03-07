@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/03/05 18:42:58 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/05 22:12:45 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ FDF_SRCS =	main.c\
 			line-draw.c\
 			isometric.c\
 			point.c\
+			map.c
 
 LIBFT = utils/libft/libft.a
 

@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 21:15:46 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/01/31 22:40:32 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:38:44 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-
-typedef struct s_int_valid
-{
-	int			value;
-	int			err;
-}					t_int_valid;
 
 int			ft_islower(int c);
 int			ft_isupper(int c);
@@ -33,7 +27,7 @@ int			ft_isprint(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-t_int_valid	ft_atoi(const char *nptr);
+int			ft_atoi(const char *nptr);
 char		*ft_itoa(int n);
 char		*ft_itoa_base(long n, int base);
 char		*ft_utoa_base(unsigned long long n, int base);

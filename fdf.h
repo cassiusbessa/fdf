@@ -37,9 +37,10 @@ typedef struct s_point
 
 typedef struct t_mapconfig
 {
-	int	trans_x;
-	int	trans_y;
-	int	zoom;
+	int		trans_x;
+	int		trans_y;
+	int		zoom;
+	float	angle;
 }	t_mapconfig;
 
 typedef struct s_map
@@ -47,24 +48,33 @@ typedef struct s_map
 	t_size  	size;
 	int     	**coordinates;
 	t_mapconfig	config;
+	void		(*transform)(struct s_map *map, int x, int y);
+	void		(*zoom)(struct s_map *map, int zoom);
+	void		(*set_angle)(struct s_map *map, float angle);
+	void		(*destroy)(struct s_map *map);
+	void		(*render)(struct s_map, t_mlx_data data);
 }   t_map;
 
-typedef void (*t_point_transform)(int angle, t_point *p);
-t_point		new_point(float x, float y, float z,
-			t_point_transform transform_function, int angle);
+typedef void (*t_point_transform)(float angle, t_point *p);
+t_point		new_point(float x, float y, float z, t_map map);
+
+t_map		*new_map(char *file);
 
 t_size		get_full_screen(void *mlx_ptr);
 int         handle_no_event(void *data);
 int         handle_key_press(int key, t_mlx_data *mlx_data);
 int         handle_key_release(int key, t_mlx_data *mlx_data);
 int         mlx_config(void);
-int         map3d_generator(char *file_name, t_map *map);
+int			handle_mouse_scroll(int key,int x, int y, t_map *map);
+
+
+int         coordinate_map(char *file_name, t_map *map);
 void	    draw_pixel(t_mlx_data mlx, int x, int y,
 			float brightness);
 
 void    draw_line2(t_mlx_data m, t_point a, t_point b, int color);
 void    bresenham(t_mlx_data m ,t_point a, t_point b, int color);
-void    connect_dots(t_map map, t_mlx_data	mlx_data, int angle);
+void    render_map(t_map map, t_mlx_data	mlx_data);
 void	destroy_matrix(void **matrix);
 
 #endif

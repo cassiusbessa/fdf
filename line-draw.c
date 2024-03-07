@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/05 19:41:18 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:14:20 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void    draw_line2(t_mlx_data m, t_point a, t_point b, int color)
     double	delta_y;
     int		pixels;
 
-	// printf("x: %f, y: %f\n", a.x, a.y);
-	// printf("x: %f, y: %f\n", b.x, b.y);
     delta_x = b.x - a.x;
     delta_y = b.y - a.y;
     pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
@@ -55,8 +53,7 @@ void    bresenham(t_mlx_data m ,t_point a, t_point b, int color)
     float   x_step;
     float   y_step;
     int     max;
-    printf("a:(x: %f, y: %f)\n", a.x, a.y);
-    printf("b:(x: %f, y: %f)\n", b.x, b.y);
+
     x_step = b.x - a.x;
     y_step = b.y - a.y;
     max = max_n(mod_n(x_step), mod_n(y_step));

@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/05 19:41:25 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:43:31 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ int	mlx_config(void)
 		&handle_key_press, &mlx_data);
 	mlx_hook(mlx_data.win, KeyRelease, KeyReleaseMask,
 		&handle_key_release, &mlx_data);
-	map = (t_map *)ft_calloc(sizeof (t_map), 1);
-	map3d_generator("42.fdf", map);
-	connect_dots(*map, mlx_data, 30);
-	destroy_matrix((void **)map->coordinates);
-	free(map);
+	map = new_map("42.fdf");
+	map->render(*map, mlx_data);
+	mlx_mouse_hook(mlx_data.win, &handle_mouse_scroll, map);
+	map->destroy(map);
 	mlx_loop(mlx_data.mlx);
 	mlx_destroy_display(mlx_data.mlx);
 	free(mlx_data.mlx);
