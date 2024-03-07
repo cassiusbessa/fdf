@@ -55,6 +55,12 @@ typedef struct s_map
 	void		(*render)(struct s_map, t_mlx_data data);
 }   t_map;
 
+typedef struct s_mlx_map
+{
+	t_map		*map;
+	t_mlx_data	data;
+}	t_mlx_map;
+
 typedef void (*t_point_transform)(float angle, t_point *p);
 t_point		new_point(float x, float y, float z, t_map map);
 
@@ -62,10 +68,10 @@ t_map		*new_map(char *file);
 
 t_size		get_full_screen(void *mlx_ptr);
 int         handle_no_event(void *data);
-int         handle_key_press(int key, t_mlx_data *mlx_data);
-int         handle_key_release(int key, t_mlx_data *mlx_data);
+int         handle_key_press(int key, t_mlx_map *map);
+int         handle_key_release(int key, t_mlx_map *map);
 int         mlx_config(void);
-int			handle_mouse_scroll(int key,int x, int y, t_map *map);
+int			handle_mouse_scroll(int key,int x, int y, t_mlx_map *map);
 
 
 int         coordinate_map(char *file_name, t_map *map);

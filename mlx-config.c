@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/07 17:43:31 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:36:13 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,26 @@
 
 int	mlx_config(void)
 {
-	t_mlx_data	mlx_data;
 	t_size		window;
-	t_point		a;
-	t_point		b;
-	t_map		*map;
+	t_mlx_map	m;
 
-	mlx_data.mlx = mlx_init();
-	if (mlx_data.mlx == NULL)
+	m.data.mlx = mlx_init();
+	if (m.data.mlx == NULL)
 		return (1);
-	window = get_full_screen(mlx_data.mlx);
-	mlx_data.win = mlx_new_window(mlx_data.mlx, window.width,
+	window = get_full_screen(m.data.mlx);
+	m.data.win = mlx_new_window(m.data.mlx, window.width,
 			window.height, "fdf");
-	if (mlx_data.win == NULL)
+	if (m.data.win == NULL)
 		return (1);
-	mlx_loop_hook(mlx_data.mlx, &handle_no_event, &mlx_data);
-	mlx_hook(mlx_data.win, KeyPress, KeyPressMask,
-		&handle_key_press, &mlx_data);
-	mlx_hook(mlx_data.win, KeyRelease, KeyReleaseMask,
-		&handle_key_release, &mlx_data);
-	map = new_map("42.fdf");
-	map->render(*map, mlx_data);
-	mlx_mouse_hook(mlx_data.win, &handle_mouse_scroll, map);
-	map->destroy(map);
-	mlx_loop(mlx_data.mlx);
-	mlx_destroy_display(mlx_data.mlx);
-	free(mlx_data.mlx);
+	mlx_loop_hook(m.data.mlx, &handle_no_event, &m.data);
+	mlx_hook(m.data.win, KeyPress, KeyPressMask,
+		&handle_key_press, &m);
+	mlx_hook(m.data.win, KeyRelease, KeyReleaseMask,
+		&handle_key_release, &m);
+	m.map = new_map("42.fdf");
+	m.map->render(*m.map, m.data);
+	mlx_mouse_hook(m.data.win, &handle_mouse_scroll, &m);
+	mlx_loop(m.data.mlx);
+	mlx_destroy_display(m.data.mlx);
+	free(m.data.mlx);
 }
