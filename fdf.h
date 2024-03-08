@@ -39,8 +39,8 @@ typedef struct t_mapconfig
 {
 	int		trans_x;
 	int		trans_y;
-	int		zoom;
-	float	angle;
+	float	zoom;
+	t_point	angle;
 }	t_mapconfig;
 
 typedef struct s_map
@@ -49,8 +49,8 @@ typedef struct s_map
 	int     	**coordinates;
 	t_mapconfig	config;
 	void		(*transform)(struct s_map *map, int x, int y);
-	void		(*zoom)(struct s_map *map, int zoom);
-	void		(*set_angle)(struct s_map *map, float angle);
+	void		(*zoom)(struct s_map *map, float zoom);
+	void		(*set_angle)(struct s_map *map, float x, float y);
 	void		(*destroy)(struct s_map *map);
 	void		(*render)(struct s_map, t_mlx_data data);
 }   t_map;

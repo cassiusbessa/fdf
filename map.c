@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:20:39 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/07 17:41:49 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:26:39 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ static void	transform_map(t_map *map, int x, int y)
 	map->config.trans_y += y;
 }
 
-static void	zoom_map(t_map *map, int zoom)
+static void	zoom_map(t_map *map, float zoom)
 {
-	map->config.zoom += zoom;
+	map->config.zoom *= zoom;
 }
 
-static void	set_angle(t_map *map, float angle)
+static void	set_angle(t_map *map, float x, float y)
 {
-	map->config.angle = angle;
+	map->config.angle.x = x;
+	map->config.angle.y = y;
 }
 
 static void	destroy(t_map *map)
@@ -45,9 +46,12 @@ t_map	*new_map(char *file)
 	map->transform = transform_map;
 	map->zoom = zoom_map;
 	map->render = render_map;
-	map->config.angle = 0.8;
+	map->config.angle.x = 0.8;
+	map->config.angle.y = 0.8;
 	map->config.trans_x = 250;
 	map->config.trans_y = -250;
-	map->config.zoom = 15;
+	map->config.zoom = 20 / ((float)(map->size.width * map->size.height) / 209);
+	if (map->config.zoom < 1)
+		map->config.zoom++;
 	return (map);
 }

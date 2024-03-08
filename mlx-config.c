@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/07 18:36:13 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:14:06 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	mlx_config(void)
 		&handle_key_press, &m);
 	mlx_hook(m.data.win, KeyRelease, KeyReleaseMask,
 		&handle_key_release, &m);
-	m.map = new_map("42.fdf");
+	m.map = new_map("42-a.fdf");
 	m.map->render(*m.map, m.data);
 	mlx_mouse_hook(m.data.win, &handle_mouse_scroll, &m);
 	mlx_loop(m.data.mlx);
