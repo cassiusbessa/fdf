@@ -59,6 +59,7 @@ typedef struct s_mlx_map
 {
 	t_map		*map;
 	t_mlx_data	data;
+	t_size		window;
 }	t_mlx_map;
 
 typedef void (*t_point_transform)(float angle, t_point *p);

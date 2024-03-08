@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/07 20:14:06 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:28:41 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 int	mlx_config(void)
 {
-	t_size		window;
 	t_mlx_map	m;
 
 	m.data.mlx = mlx_init();
 	if (m.data.mlx == NULL)
 		return (1);
-	window = get_full_screen(m.data.mlx);
-	m.data.win = mlx_new_window(m.data.mlx, window.width,
-			window.height, "fdf");
+	m.window = get_full_screen(m.data.mlx);
+	m.data.win = mlx_new_window(m.data.mlx, m.window.width,
+			m.window.height, "fdf");
 	if (m.data.win == NULL)
 		return (1);
 	mlx_loop_hook(m.data.mlx, &handle_no_event, &m.data);
