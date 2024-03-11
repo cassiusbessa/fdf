@@ -46,6 +46,7 @@ typedef struct t_mapconfig
 typedef struct s_map
 {
 	t_size  	size;
+	t_size		window_size;
 	int     	**coordinates;
 	t_mapconfig	config;
 	void		(*transform)(struct s_map *map, int x, int y);
@@ -59,7 +60,6 @@ typedef struct s_mlx_map
 {
 	t_map		*map;
 	t_mlx_data	data;
-	t_size		window;
 }	t_mlx_map;
 
 typedef void (*t_point_transform)(float angle, t_point *p);
@@ -67,7 +67,7 @@ t_point		new_point(float x, float y, float z, t_map map);
 
 t_map		*new_map(char *file);
 
-t_size		get_full_screen(void *mlx_ptr);
+void		get_full_screen(void *mlx_ptr, t_mlx_map *m);
 int         handle_no_event(void *data);
 int         handle_key_press(int key, t_mlx_map *map);
 int         handle_key_release(int key, t_mlx_map *map);

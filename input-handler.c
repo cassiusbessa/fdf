@@ -6,13 +6,13 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:25:05 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/06 18:54:26 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:01:41 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	height_count(char *file_name)
+int	height_count(char *file_name)
 {
 	int		fd;
 	int		count;
@@ -32,7 +32,7 @@ static int	height_count(char *file_name)
 	return (count);
 }
 
-static int	width_count(char **splited)
+int	width_count(char **splited)
 {
 	int	i;
 

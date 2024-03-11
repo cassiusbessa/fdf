@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/03/05 22:12:45 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/11 15:47:34 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ FDF_SRCS =	main.c\
 			line-draw.c\
 			isometric.c\
 			point.c\
-			map.c
+			map.c\
+			event-key-press.c
 
 LIBFT = utils/libft/libft.a
 
