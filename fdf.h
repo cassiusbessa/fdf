@@ -66,6 +66,7 @@ typedef void (*t_point_transform)(float angle, t_point *p);
 t_point		new_point(float x, float y, float z, t_map map);
 
 t_map		*new_map(char *file);
+void		center_map(t_map *map);
 
 void		get_full_screen(void *mlx_ptr, t_mlx_map *m);
 int         handle_no_event(void *data);

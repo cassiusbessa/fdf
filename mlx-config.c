@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/11 18:01:54 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:14:32 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,11 @@ int	mlx_config(void)
 	m.data.mlx = mlx_init();
 	if (m.data.mlx == NULL)
 		return (1);
-	m.map = new_map("42.fdf");
+	m.map = new_map("42-a.fdf");
 	get_full_screen(m.data.mlx, &m);
 	m.data.win = mlx_new_window(m.data.mlx, m.map->window_size.width,
 			m.map->window_size.height, "fdf");
-    float center_x = m.map->window_size.width / 2.0;
-    float center_y = m.map->window_size.height / 2.0;
-	float map_center_x = (m.map->size.width / 2.0) * cos(m.map->config.angle.x) - (m.map->size.height / 2.0) * sin(m.map->config.angle.x);
-    float map_center_y = (m.map->size.width / 2.0) * sin(m.map->config.angle.y) + (m.map->size.width / 2.0) * cos(m.map->config.angle.y);
-	m.map->config.trans_x = center_x - map_center_x;
-	m.map->config.trans_y = map_center_y - center_y;
-
+	center_map(m.map);
 	if (m.data.win == NULL)
 		return (1);
 	mlx_loop_hook(m.data.mlx, &handle_no_event, &m.data);

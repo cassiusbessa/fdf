@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:20:39 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/07 20:26:39 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:55:30 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	set_angle(t_map *map, float x, float y)
 {
 	map->config.angle.x = x;
 	map->config.angle.y = y;
+	center_map(map);
 }
 
 static void	destroy(t_map *map)
@@ -48,8 +49,6 @@ t_map	*new_map(char *file)
 	map->render = render_map;
 	map->config.angle.x = 0.8;
 	map->config.angle.y = 0.8;
-	map->config.trans_x = 250;
-	map->config.trans_y = -250;
 	map->config.zoom = 20 / ((float)(map->size.width * map->size.height) / 209);
 	if (map->config.zoom < 1)
 		map->config.zoom++;
