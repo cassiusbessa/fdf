@@ -74,7 +74,7 @@ int         handle_key_press(int key, t_mlx_map *map);
 int         handle_key_release(int key, t_mlx_map *map);
 int         mlx_config(void);
 int			handle_mouse_scroll(int key,int x, int y, t_mlx_map *map);
-
+void		write_commands(t_mlx_data data);
 
 int         coordinate_map(char *file_name, t_map *map);
 void	    draw_pixel(t_mlx_data mlx, int x, int y,

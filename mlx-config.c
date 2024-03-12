@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/11 21:14:32 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:14:26 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	mlx_config(void)
 {
-	t_size		window;
 	t_mlx_map	m;
 
 	m.data.mlx = mlx_init();
 	if (m.data.mlx == NULL)
 		return (1);
-	m.map = new_map("42-a.fdf");
+	m.map = new_map("42.fdf");
 	get_full_screen(m.data.mlx, &m);
 	m.data.win = mlx_new_window(m.data.mlx, m.map->window_size.width,
 			m.map->window_size.height, "fdf");
 	center_map(m.map);
+	write_commands(m.data);
 	if (m.data.win == NULL)
 		return (1);
 	mlx_loop_hook(m.data.mlx, &handle_no_event, &m.data);

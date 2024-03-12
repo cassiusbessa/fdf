@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/03/11 19:06:23 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/12 16:17:05 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ FDF_SRCS =	main.c\
 			point.c\
 			map.c\
 			map-helper.c\
-			event-key-press.c
+			event-key-press.c\
+			write-window.c
 
 LIBFT = utils/libft/libft.a
 

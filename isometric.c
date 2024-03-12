@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 14:57:35 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/08 16:53:31 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:30:04 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void    render_map(t_map map, t_mlx_data mlx_data)
     int     in;
     t_point p0;
     t_point p1;
-
+    mlx_clear_window(mlx_data.mlx, mlx_data.win);
+    write_commands(mlx_data);
     ex = 0;
     while (ex < map.size.height)
     {
@@ -47,5 +48,6 @@ void    render_map(t_map map, t_mlx_data mlx_data)
         }
         ex++;
     }
+    
 }
 
