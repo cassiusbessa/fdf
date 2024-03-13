@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:09:41 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/04 21:23:44 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:36:37 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	mlx_config();
+	mlx_config(argv[1]);
 }

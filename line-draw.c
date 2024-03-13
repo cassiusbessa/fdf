@@ -6,63 +6,41 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/05 22:14:20 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:12:29 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    draw_line2(t_mlx_data m, t_point a, t_point b, int color)
+static int	max_n(float a, float b)
 {
-    double	delta_x;
-    double	delta_y;
-    int		pixels;
-
-    delta_x = b.x - a.x;
-    delta_y = b.y - a.y;
-    pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-    delta_x /= pixels;
-    delta_y /= pixels;
-    double pixel_x = a.x;
-    double pixel_y = a.y;
-    while (pixels)
-    {
-        mlx_pixel_put(m.mlx, m.win, pixel_x, pixel_y, color);
-        pixel_x += delta_x;
-        pixel_y += delta_y;
-        --pixels;
-    }
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-static int max_n(float a, float b)
+static float	mod_n(float i)
 {
-    if (a > b)
-        return (a);
-    return (b);
+	if (i < 0)
+		return (-i);
+	return (i);
 }
 
-static float mod_n(float i)
+void	bresenham(t_mlx_data m, t_point a, t_point b, int color)
 {
-    if (i < 0)
-        return (-i);
-    return (i);
-}
+	float	x_step;
+	float	y_step;
+	int		max;
 
-void    bresenham(t_mlx_data m ,t_point a, t_point b, int color)
-{
-    float   x_step;
-    float   y_step;
-    int     max;
-
-    x_step = b.x - a.x;
-    y_step = b.y - a.y;
-    max = max_n(mod_n(x_step), mod_n(y_step));
-    x_step /= max;
-    y_step /= max;
-    while ((int)(a.x - b.x) || (int)(a.y - b.y))
-    {
-        mlx_pixel_put(m.mlx, m.win, a.x, a.y, color);
-        a.x += x_step;
-        a.y += y_step;
-    }
+	x_step = b.x - a.x;
+	y_step = b.y - a.y;
+	max = max_n(mod_n(x_step), mod_n(y_step));
+	x_step /= max;
+	y_step /= max;
+	while ((int)(a.x - b.x) || (int)(a.y - b.y))
+	{
+		mlx_pixel_put(m.mlx, m.win, a.x, a.y, color);
+		a.x += x_step;
+		a.y += y_step;
+	}
 }

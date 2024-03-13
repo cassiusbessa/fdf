@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:29:38 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/12 17:30:33 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 20:51:01 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	handle_arrow_press(int key, t_mlx_map *map)
 	}
 }
 
-static void handle_num_press(int key, t_mlx_map *map)
+static void	handle_num_press(int key, t_mlx_map *map)
 {
 	if (key == XK_KP_0 || key == XK_0)
 	{
@@ -73,10 +73,7 @@ static void	handle_letter_press(int key, t_mlx_map *map)
 int	handle_key_press(int key, t_mlx_map *map)
 {
 	if (key == XK_Escape)
-	{
-		mlx_destroy_window(map->data.mlx, map->data.win);
-		map->map->destroy(map->map);
-	}
+		close_window(map);
 	else
 	{
 		handle_arrow_press(key, map);
@@ -89,9 +86,6 @@ int	handle_key_press(int key, t_mlx_map *map)
 int	handle_key_release(int key, t_mlx_map *map)
 {
 	if (key == XK_Escape)
-	{
-		mlx_destroy_window(map->data.mlx, map->data.win);
-		map->map->destroy(map->map);
-	}
+		close_window(map);
 	return (0);
 }
