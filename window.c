@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:53:47 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/12 20:55:51 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:29:34 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	write_commands(t_mlx_data data)
 
 int	close_window(t_mlx_map *data)
 {
+	mlx_destroy_image(data->data.mlx, data->img.mlx_img);
 	mlx_destroy_window(data->data.mlx, data->data.win);
 	mlx_destroy_display(data->data.mlx);
 	data->map->destroy(data->map);
