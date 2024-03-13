@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/12 19:12:29 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:07:30 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static float	mod_n(float i)
 	return (i);
 }
 
-void	bresenham(t_mlx_data m, t_point a, t_point b, int color)
+void	bresenham(t_mlx_data m, t_point a, t_point b, t_img *img)
 {
 	float	x_step;
 	float	y_step;
@@ -39,7 +39,7 @@ void	bresenham(t_mlx_data m, t_point a, t_point b, int color)
 	y_step /= max;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
-		mlx_pixel_put(m.mlx, m.win, a.x, a.y, color);
+		img_pix_put(img, a.x, a.y, a.z);
 		a.x += x_step;
 		a.y += y_step;
 	}

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isometric.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 14:57:35 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/12 19:00:40 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/12 23:03:43 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	select_color(t_point p)
-{
-	if (!p.z)
-		return (48485);
-	return (0xFFFFFF);
-}
+// int	select_color(t_point p)
+// {
+// 	if (!p.z)
+// 		return (48485);
+// 	return (0xFFFFFF);
+// }
 
 static void	prepare_map(t_mlx_data mlx_data)
 {
@@ -25,7 +25,7 @@ static void	prepare_map(t_mlx_data mlx_data)
 	write_commands(mlx_data);
 }
 
-void	render_map(t_map map, t_mlx_data mlx_data)
+void	render_map(t_map map, t_mlx_data mlx_data, t_img *img)
 {
 	int		ex;
 	int		in;
@@ -43,13 +43,14 @@ void	render_map(t_map map, t_mlx_data mlx_data)
 			if (in + 1 < map.size.width)
 			{
 				p1 = new_point((in + 1), ex, map.coordinates[ex][in + 1], map);
-				bresenham(mlx_data, p0, p1, select_color(p1));
+				bresenham(mlx_data, p0, p1, img);
 			}
 			if (ex + 1 < map.size.height)
 			{
 				p1 = new_point(in, (ex + 1), map.coordinates[ex + 1][in], map);
-				bresenham(mlx_data, p0, p1, select_color(p1));
+				bresenham(mlx_data, p0, p1, img);
 			}
 		}
 	}
+	mlx_put_image_to_window(mlx_data.mlx, mlx_data.win, img->mlx_img, 0, 0);
 }
