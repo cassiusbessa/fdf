@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 14:57:35 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/12 23:03:43 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:22:06 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	render_map(t_map map, t_mlx_data mlx_data, t_img *img)
 	int		in;
 	t_point	p0;
 	t_point	p1;
-
-	prepare_map(mlx_data);
 	ex = -1;
 	while (++ex < map.size.height)
 	{

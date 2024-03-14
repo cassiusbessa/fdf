@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 19:20:56 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/13 22:04:44 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	mlx_config(char *file_name)
 	mlx_hook(m.data.win, KeyRelease, KeyReleaseMask,
 		&handle_key_release, &m);
 	m.map->render(*m.map, m.data, &m.img);
+	write_commands(m.data);
 	mlx_mouse_hook(m.data.win, &handle_mouse_scroll, &m);
 	mlx_loop(m.data.mlx);
 }

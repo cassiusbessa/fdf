@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:21:06 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 19:14:19 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/13 22:42:52 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct t_mapconfig
 	int		trans_x;
 	int		trans_y;
 	float	zoom;
+	int		xzoom;
 	t_point	angle;
 }	t_mapconfig;
 
