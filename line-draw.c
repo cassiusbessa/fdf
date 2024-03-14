@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:13:43 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 19:07:30 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:31:16 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	bresenham(t_mlx_data m, t_point a, t_point b, t_img *img)
 	y_step /= max;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
+		if (m.window_size.height < (int)a.y || m.window_size.width < (int)a.x)
+			return	;
 		img_pix_put(img, a.x, a.y, a.z);
 		a.x += x_step;
 		a.y += y_step;

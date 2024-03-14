@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:09:30 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 22:04:44 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:29:31 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	mlx_config(char *file_name)
 		return (1);
 	m.map = new_map(file_name);
 	get_full_screen(m.data.mlx, &m);
+	m.data.window_size.height = m.map->window_size.height;
+	m.data.window_size.width = m.map->window_size.width;
 	m.img = new_image(m);
 	m.data.win = mlx_new_window(m.data.mlx, m.map->window_size.width,
 			m.map->window_size.height, "fdf");

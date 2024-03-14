@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:26:44 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/14 18:24:53 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:31:38 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_img	new_image(t_mlx_map m)
 {
 	t_img	img;
 
-	img.mlx_img = mlx_new_image(m.data.mlx, m.map->window_size.width * 16,
-		m.map->window_size.height * 16);
+	img.mlx_img = mlx_new_image(m.data.mlx, m.map->window_size.width * 2,
+		m.map->window_size.height * 2);
 	
 	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len, &img.endian);
 	return (img);

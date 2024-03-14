@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:21:06 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 22:42:52 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:55:02 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_mlx_data
 {
 	void	*mlx;
 	void	*win;
+	t_size	window_size;
 }	t_mlx_data;
 
 typedef struct s_point
@@ -88,6 +89,7 @@ t_point		new_point(float x, float y, float z, t_map map);
 
 t_map		*new_map(char *file);
 void		center_map(t_map *map);
+void		rerender_map(t_mlx_map *map);
 
 void		get_full_screen(void *mlx_ptr, t_mlx_map *m);
 int			handle_no_event(void *data);

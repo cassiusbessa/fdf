@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 21:32:45 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/13 23:15:24 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:55:49 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,13 @@ int	handle_mouse_scroll(int key, int x, int y, t_mlx_map *map)
 			return (0);
 		map->map->config.xzoom++;
 		map->map->zoom(map->map, 1.1);
-		mlx_destroy_image(map->data.mlx, map->img.mlx_img);
-		map->img = new_image(*map);
-		map->map->render(*map->map, map->data, &map->img);
-		write_commands(map->data);
+		rerender_map(map);
 	}
 	else if (key == Button5)
 	{
 		map->map->config.xzoom--;
 		map->map->zoom(map->map, 0.9);
-		mlx_destroy_image(map->data.mlx, map->img.mlx_img);
-		map->img = new_image(*map);
-		map->map->render(*map->map, map->data, &map->img);
-		write_commands(map->data);
+		rerender_map(map);
 	}
 	return (0);
 }
