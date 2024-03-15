@@ -6,7 +6,7 @@
 #    By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/20 19:50:42 by caqueiro          #+#    #+#              #
-#    Updated: 2024/03/12 22:51:49 by caqueiro         ###   ########.fr        #
+#    Updated: 2024/03/14 21:03:44 by caqueiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,13 @@ OBJS	= ${FDF_SRCS:.c=.o}
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-$(FDF): clean
+$(FDF):
 		@make -C utils/libft
 		@make -C minilibx-linux
 		${CC} ${FDF_SRCS} ${LIBFT} ${MINILIBX} -o ${FDF} -Imlx_linux -lXext -lX11 -lm
-		@make fclean -C utils/libft
 		@printf "$(GREEN)    - Executable ready.\n$(RESET)"
 
-all: $(FDF) clean
-		@make fclean -C utils/libft
-		${RM} ${OBJS}
+all: $(FDF)
 
 clean:
 		@make fclean -C utils/libft
