@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:26:44 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/14 21:00:01 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 21:49:28 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ t_img	new_image(t_mlx_map m)
 
 int	select_color(int z)
 {
-	if (!z)
-		return (48485);
-	return (0xFFFFFF);
+	if (z == 0)
+		return (0xFFFFFF);
+	if (z  > 0)
+		return (0xFF0000);
+	return (0x00FF00);
 }
 
 void	img_pix_put(t_img *img, int x, int y, int z)
