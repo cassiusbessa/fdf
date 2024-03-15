@@ -6,7 +6,7 @@
 /*   By: caqueiro <caqueiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:26:44 by caqueiro          #+#    #+#             */
-/*   Updated: 2024/03/14 21:49:28 by caqueiro         ###   ########.fr       */
+/*   Updated: 2024/03/14 21:49:58 by caqueiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	select_color(int z)
 {
 	if (z == 0)
 		return (0xFFFFFF);
-	if (z  > 0)
+	if (z > 0)
 		return (0xFF0000);
 	return (0x00FF00);
 }
